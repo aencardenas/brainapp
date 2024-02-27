@@ -1,10 +1,13 @@
 package com.brain.brainapp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +22,9 @@ public class Professor {
 
     private String name;
     private String email;
+
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Tutoring> tutoringSet = new HashSet<>();
 
     @CreationTimestamp
     private LocalDate createdAt;

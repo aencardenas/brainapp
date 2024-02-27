@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/tutorings")
 public class TutoringController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class TutoringController {
     @Autowired
     private StudentRepository studentRepository;
 
-    @GetMapping("/classes")
+    @GetMapping
     public ResponseEntity<List<Tutoring>> getAllClasses() {
         List<Tutoring> tutorings = tutoringService.getAllClasses();
         return new ResponseEntity<>(tutorings, HttpStatus.OK);
@@ -44,7 +44,7 @@ public class TutoringController {
         return new ResponseEntity<>(tutorings, HttpStatus.OK);
     }
 
-    @PostMapping("/classes")
+    @PostMapping
     public ResponseEntity<Tutoring> createClass(@RequestBody Tutoring tutoring) {
 
         Long professorId = tutoring.getProfessor().getId();
